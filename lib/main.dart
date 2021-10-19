@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
 import 'counter_bloc.dart';
-import 'counter_event.dart';
 
 void main() {
   runApp(MyApp());
@@ -64,13 +62,13 @@ class _MyHomePageState extends State<MyHomePage> {
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
           FloatingActionButton(
-            onPressed: () => _bloc.counterEventSink.add(IncrementEvent()),
+            onPressed: () => _bloc.counterEventSink.add(Event.Increment),
             tooltip: 'Increment',
             child: Icon(Icons.add),
           ),
           SizedBox(width: 10),
           FloatingActionButton(
-            onPressed: () => _bloc.counterEventSink.add(DecrementEvent()),
+            onPressed: () => _bloc.counterEventSink.add(Event.Decrement),
             tooltip: 'Decrement',
             child: Icon(Icons.remove),
           ),

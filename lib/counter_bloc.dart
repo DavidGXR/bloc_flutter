@@ -1,13 +1,17 @@
 import 'dart:async';
-import 'package:bloc_app/counter_event.dart';
+
+enum Event {
+  Increment,
+  Decrement
+}
 
 class CounterBloc {
   int _counter = 0;
 
   // ******* Event ******* //
-  final _counterEventController = StreamController<CounterEvent>();
+  final _counterEventController = StreamController<Event>();
   // For events, exposing only a sink which is an input
-  Sink<CounterEvent> get counterEventSink => _counterEventController.sink;
+  Sink<Event> get counterEventSink => _counterEventController.sink;
 
   // ******* State ******* //
   final _counterStateController = StreamController<int>();
@@ -20,8 +24,8 @@ class CounterBloc {
     _counterEventController.stream.listen(_mapEventToState);
   }
 
-  void _mapEventToState(CounterEvent event) {
-    if (event is IncrementEvent) {
+  void _mapEventToState(Event event) {
+    if (event == Event.Increment) {
       _counter++;
     } else {
       _counter--;
